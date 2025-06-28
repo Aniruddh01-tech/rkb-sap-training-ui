@@ -12,7 +12,6 @@ import {
   Card,
   CardContent,
   CardHeader,
-  Grid,
   TextField,
   Paper,
   Divider,
@@ -20,7 +19,9 @@ import {
   IconButton,
   List,      
   ListItem,
+  Stack,
 } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
@@ -120,7 +121,7 @@ export default function Home() {
           <Typography variant="h2" gutterBottom sx={{ fontWeight: 800 }}>
             Welcome to RKB SAP Training
           </Typography>
-          <Typography variant="h5" color="text.secondary" sx={{ mb: 2 }}>
+          <Typography variant="h5" sx={{ mb: 2 }}>
             Empowering your SAP career with expert-led courses and hands-on learning.
           </Typography>
           <Typography variant="body1" sx={{ mb: 3 }}>
@@ -141,31 +142,37 @@ export default function Home() {
 
         {/* Courses Section */}
         <Box id="courses" sx={{ mb: 8 }}>
-          <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, textAlign: 'center' }}>
-            Our Courses
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ mb: 4, textAlign: 'center' }}>
-            Choose from our in-demand SAP modules, each designed with practical examples and real-world scenarios.
-          </Typography>
-          <Grid container spacing={4}>
-            {courses.map((course) => (
-              <Grid item xs={12} sm={6} key={course.title}>
-                <Card elevation={3} sx={{ borderRadius: 3, height: '100%' }}>
-                  <CardHeader
-                    title={course.title}
-                    titleTypographyProps={{ variant: 'h6', fontWeight: 700 }}
-                    sx={{ background: theme.palette.mode === 'dark' ? '#222' : '#f5f5f5', textAlign: 'center' }}
-                  />
-                  <CardContent>
-                    <Typography variant="body1" color="text.secondary">
-                      {course.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+  <Typography variant="h4" gutterBottom sx={{ fontWeight: 700, textAlign: 'center' }}>
+    Our Courses
+  </Typography>
+  <Typography variant="body1" sx={{ mb: 4, textAlign: 'center' }}>
+    Choose from our in-demand SAP modules, each designed with practical examples and real-world scenarios.
+  </Typography>
+  <Stack
+    direction={{ xs: 'column', sm: 'row' }}
+    spacing={4}
+    useFlexGap
+    flexWrap="wrap"
+    justifyContent="center"
+  >
+    {courses.map((course) => (
+      <Box key={course.title} sx={{ flex: '1 1 300px', minWidth: 250, maxWidth: 350 }}>
+        <Card elevation={3} sx={{ borderRadius: 3, height: '100%' }}>
+          <CardHeader
+            title={course.title}
+            titleTypographyProps={{ variant: 'h6', fontWeight: 700 }}
+            sx={{ background: theme.palette.mode === 'dark' ? '#222' : '#f5f5f5', textAlign: 'center' }}
+          />
+          <CardContent>
+            <Typography variant="body1" color="text.secondary">
+              {course.description}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Box>
+    ))}
+  </Stack>
+</Box>
 
         <Divider sx={{ mb: 6 }} />
 
@@ -223,7 +230,7 @@ export default function Home() {
           <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
             Contact
           </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
+          <Typography variant="body1"  sx={{ mb: 2 }}>
             Reach out to us using the details below. We look forward to hearing from you!
           </Typography>
           <Paper elevation={2} sx={{ p: 3, maxWidth: 450, mx: 'auto', borderRadius: 3 }}>
